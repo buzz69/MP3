@@ -29,9 +29,10 @@ function playSound(mp3File) {
 			function (position) {
 				if (position > -1) {
 					if(position==-0.001){
+						$('#statusBar').html('Position: 0s / ' + parseInt(duration) + 's';
 						clearTimer(mediaTimer);
 					}else{
-						$('#statusBar').html('Position: ' + position + 's / ' + duration + 's');
+						$('#statusBar').html('Position: ' + parseInt(position) + 's / ' + parseInt(duration) + 's');
 					}
 				}
 			},
