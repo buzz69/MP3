@@ -2,7 +2,7 @@ var my_media=null;
 var mediaTimer=null;
 var playing = false;
 
-var statusBarHtml='<table width=100%><tr><td width=50><center><input data-icon="delete" data-iconpos="notext" value="Stop" type="button" onclick="stopAudio();"/></center></td><td width=30><center><div id="currentTimeDiv"></div></center></td><td><center><div id="progressWrapper" style="width:100%;height:25px;"><progress value=\'0\' max=\'100\'></progress></div></center></td><td width=30><center><div id="endTimeDiv"></div></center></td></tr></table>';
+var statusBarHtml='<table width=100%><tr><td width=50><center><form><input data-icon="delete" data-iconpos="notext" value="Stop" type="button" onclick="stopAudio();"></form></center></td><td width=30><center><div id="currentTimeDiv"></div></center></td><td><center><div id="progressWrapper" style="width:100%;height:25px;"><progress value=\'0\' max=\'100\'></progress></div></center></td><td width=30><center><div id="endTimeDiv"></div></center></td></tr></table>';
 
 $( document ).bind( "deviceready", function() {
 	
