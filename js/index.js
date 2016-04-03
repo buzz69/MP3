@@ -2,6 +2,8 @@ var my_media=null;
 var mediaTimer=null;
 var playing = false;
 
+var statusBarHtml='<table width=100%><tr><td width=50><center><input data-icon="delete" data-iconpos="notext" value="Stop" type="button" onclick="stopAudio();"></center></td><td width=30><div id="currentTimeDiv"></div></td><td><center><div id="progressWrapper"></div></center></td><td width=30><div id="endTimeDiv"></div></td></tr></table>';
+
 $( document ).bind( "deviceready", function() {
 	
 });
@@ -39,12 +41,18 @@ function playSound(mp3File) {
 		var dur = my_media.getDuration();
 		if (dur > 0) {
 			clearInterval(timerDur);
-		   duration = dur; 
+			duration = dur; 
+			$('#endTimeDiv').html(parseInt(duration) + 's');
 		}
     }, 100);
 	
 	// Play audio
 	my_media.play();
+	
+	//
+	$('#statusBar').html(statusBarHtml);
+	$('#currentTimeDiv').html('0s');
+	$('#progressWrapperDiv').html('<div id="internalProgress" style="background-color:#00F;width:1%"></div>');
 	
 	// progress
 	var mediaTimer = setInterval(function () {
@@ -55,10 +63,15 @@ function playSound(mp3File) {
 			function (position) {
 				if (position > -1) {
 					if(position==-0.001){
-						$('#statusBar').html('Position: 0s / ' + parseInt(duration) + 's');
+						//$('#statusBar').html('Position: 0s / ' + parseInt(duration) + 's');
+						$('#internalProgress').css('width','100%');
 						clearTimer(mediaTimer);
 					}else{
-						$('#statusBar').html('Position: ' + parseInt(position) + 's / ' + parseInt(duration) + 's');
+						//$('#statusBar').html('Position: ' + parseInt(position) + 's / ' + parseInt(duration) + 's');
+						percentage = position/duration ;
+                        percentage = percentage * 100;
+						$('#internalProgress').css('width',percentage + '%');
+						$('#currentTimeDiv').html(parseInt(position) + 's');
 					}
 				}
 			},
@@ -72,11 +85,21 @@ function playSound(mp3File) {
 	
 	function onEnd() {
 		if( my_media && playing == false ){
-			$('.stop-button').removeClass('stop-button');
-			$('.progressinternal').css('width', '3%');
-			my_media.release();
+			stopAudio();
 		}
 	}
+}
+
+function stopAudio() {
+	if (my_media) {
+		my_media.stop();
+		my_media.release();
+	}
+	clearInterval(mediaTimer);
+	playing = false; 
+	mediaTimer = null;
+	my_media = null;
+	$('#statusBar').html('</br>');
 }
 
 function dump(arr,level) {
