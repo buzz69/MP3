@@ -28,12 +28,17 @@ function playSound(mp3File) {
 			// success callback
 			function (position) {
 				if (position > -1) {
-					$('#statusBar').html('Position: ' + position + 's / ' + duration + 's');
+					if(position==-0.001){
+						clearTimer(mediaTimer);
+					}else{
+						$('#statusBar').html('Position: ' + position + 's / ' + duration + 's');
+					}
 				}
 			},
 			// error callback
 			function (e) {
 				console.log("Error getting pos=" + e);
+				clearTimer(mediaTimer);
 			}
 		);
 	}, 1000);
