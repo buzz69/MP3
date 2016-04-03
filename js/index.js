@@ -1,13 +1,11 @@
 var my_media=null;
 var mediaTimer=null;
-var audioLoaded='no';
 
 $( document ).bind( "deviceready", function() {
 	
 });
 
 function playSound(mp3File) {
-	if(audioLoaded=='yes'){my_media.release();clearInterval(mediaTimer);}
 	filePath = '/android_asset/www/sounds/' + mp3File;
 	//var audioElement = document.getElementById(id);
 	//var url = audioElement.getAttribute('src');
@@ -21,7 +19,6 @@ function playSound(mp3File) {
 			$('#statusBar').html('PlayAudio error: ' + dump(err));
 		}
 	);
-	audioLoaded='yes';
 	// Play audio
 	duration=my_media.getDuration();
 	my_media.play();
