@@ -2,7 +2,7 @@ var my_media=null;
 var mediaTimer=null;
 var playing = false;
 
-var statusBarHtml='<table width=100%><tr><td width=50><center><input data-icon="delete" data-iconpos="notext" value="Stop" type="button" onclick="stopAudio();"></center></td><td width=30><div id="currentTimeDiv"></div></td><td><center><div id="progressWrapper"></div></center></td><td width=30><div id="endTimeDiv"></div></td></tr></table>';
+var statusBarHtml='<table width=100%><tr><td width=50><center><input data-icon="delete" data-iconpos="notext" value="Stop" type="button" onclick="stopAudio();"></center></td><td width=30><div id="currentTimeDiv"></div></td><td><center><div id="progressWrapper" style="width:100%;height:25px;"></div></center></td><td width=30><div id="endTimeDiv"></div></td></tr></table>';
 
 $( document ).bind( "deviceready", function() {
 	
@@ -19,7 +19,7 @@ function playSound(mp3File) {
 	}
 	
 	filePath = '/android_asset/www/sounds/' + mp3File;
-	var my_media = new Media(filePath,onEnd,
+	my_media = new Media(filePath,onEnd,
 		// success callback
 		function () {
 			console.log("playAudio():Audio Success");
@@ -52,10 +52,10 @@ function playSound(mp3File) {
 	//
 	$('#statusBar').html(statusBarHtml);
 	$('#currentTimeDiv').html('0s');
-	$('#progressWrapperDiv').html('<div id="internalProgress" style="background-color:#00F;width:1%"></div>');
+	$('#progressWrapperDiv').html('<div id="internalProgress" style="background-color:#00F;width:1%;height:25px"></div>');
 	
 	// progress
-	var mediaTimer = setInterval(function () {
+	mediaTimer = setInterval(function () {
 		duration=my_media.getDuration();
 		// get media position
 		my_media.getCurrentPosition(
