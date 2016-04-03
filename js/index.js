@@ -4,7 +4,7 @@ $( document ).bind( "deviceready", function() {
 });
 
 function playsound(mp3File) {
-	filePath = 'sounds/' + mp3File;
+	filePath = '/android_asset/www/sounds/' + mp3File;
 	$('#statusBar').html('Path: ' + filePath);
 	//var audioElement = document.getElementById(id);
 	//var url = audioElement.getAttribute('src');
