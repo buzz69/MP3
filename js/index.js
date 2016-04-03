@@ -1,11 +1,14 @@
+var my_media=null;
+var mediaTimer=null;
+var audioLoaded='no';
 
 $( document ).bind( "deviceready", function() {
 	
 });
 
 function playSound(mp3File) {
+	if(audioLoaded=='yes'){my_media.release();clearInterval(mediaTimer);}
 	filePath = '/android_asset/www/sounds/' + mp3File;
-	$('#statusBar').html('Path: ' + filePath);
 	//var audioElement = document.getElementById(id);
 	//var url = audioElement.getAttribute('src');
 	var my_media = new Media(filePath,
@@ -15,12 +18,28 @@ function playSound(mp3File) {
 		},
 		// error callback
 		function (err) { 
-			currentContent=$('#statusBar').html();
-			$('#statusBar').html(currentContent + '<br>' + 'PlayAudio error: ' + dump(err));
+			$('#statusBar').html('PlayAudio error: ' + dump(err));
 		}
 	);
-  // Play audio
-  my_media.play();
+	audioLoaded='yes';
+	// Play audio
+	duration=my_media.getDuration();
+	my_media.play();
+	var mediaTimer = setInterval(function () {
+		// get media position
+		my_media.getCurrentPosition(
+			// success callback
+			function (position) {
+				if (position > -1) {
+					$('#statusBar').html('Position: ' + position + 's / ' + duration + 's');
+				}
+			},
+			// error callback
+			function (e) {
+				console.log("Error getting pos=" + e);
+			}
+		);
+	}, 1000);
 }
 
 function dump(arr,level) {
