@@ -24,7 +24,8 @@ function playSound(mp3File) {
 		},
 		// error callback
 		function (err) { 
-			$('#statusBar').html('PlayAudio error: ' + dump(err));
+			return true;
+			//$('#statusBar').html('PlayAudio error: ' + dump(err));
 		}
 	);
 	
