@@ -20,9 +20,9 @@ function playSound(mp3File) {
 		}
 	);
 	// Play audio
-	duration=my_media.getDuration();
 	my_media.play();
 	var mediaTimer = setInterval(function () {
+		duration=my_media.getDuration();
 		// get media position
 		my_media.getCurrentPosition(
 			// success callback
