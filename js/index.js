@@ -2,7 +2,7 @@ var my_media=null;
 var mediaTimer=null;
 var playing = false;
 
-var statusBarHtml='<table width=100%><tr><td width=50><center><input data-icon="delete" data-iconpos="notext" value="Stop" type="button" onclick="stopAudio();"/></center></td><td width=30><div id="currentTimeDiv"></div></td><td><center><div id="progressWrapper" style="width:100%;height:25px;"></div></center></td><td width=30><div id="endTimeDiv"></div></td></tr></table>';
+var statusBarHtml='<table width=100%><tr><td width=50><center><input data-icon="delete" data-iconpos="notext" value="Stop" type="button" onclick="stopAudio();"/></center></td><td width=30><div id="currentTimeDiv"></div></td><td><center><div id="progressWrapper" style="width:100%;height:25px;"><progress value=\'0\' max=\'100\'></progress></div></center></td><td width=30><div id="endTimeDiv"></div></td></tr></table>';
 
 $( document ).bind( "deviceready", function() {
 	
@@ -62,13 +62,13 @@ function playSound(mp3File) {
 			function (position) {
 				if (position > -1) {
 					if(position==-0.001){
-						$('#progressWrapper').html("<progress value=100 max=100></progress>");
+						$('#progressWrapper').html("<progress value='100' max='100'></progress>");
 						clearTimer(mediaTimer);
 					}else{
 						//$('#statusBar').html('Position: ' + parseInt(position) + 's / ' + parseInt(duration) + 's');
 						percentage = position*duration ;
                         percentage = percentage / 100;
-						$('#progressWrapper').html("<progress value="+parseInt(percentage)+" max=100></progress>");
+						$('#progressWrapper').html("<progress value='"+parseInt(percentage)+"' max='100'></progress>");
 						$('#currentTimeDiv').html(parseInt(position) + 's');
 					}
 				}
