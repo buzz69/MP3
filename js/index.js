@@ -66,9 +66,7 @@ function playSound(mp3File) {
 						clearTimer(mediaTimer);
 					}else{
 						//$('#statusBar').html('Position: ' + parseInt(position) + 's / ' + parseInt(duration) + 's');
-						percentage = position*duration ;
-                        percentage = percentage / 100;
-						$('#progressWrapper').html("<progress value='"+parseInt(percentage)+"' max='100'></progress>");
+						$('#progressWrapper').html("<progress value='"+parseInt(position)+"' max='"+parseInt(duration)+"'></progress>");
 						$('#currentTimeDiv').html(parseInt(position) + 's');
 					}
 				}
