@@ -9,7 +9,7 @@ $( document ).bind( "deviceready", function() {
 });
 
 $(document).on("pageshow", "#splash",function(event){
-	//setTimeout('$.mobile.changePage( "#home", { transition: "slideup"});',1000);
+	setTimeout('$.mobile.changePage( "#home", { transition: "slideup"});',1000);
 });
 
 function backKeyDown() { 
