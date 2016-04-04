@@ -96,7 +96,7 @@ body {
 progress {
 	height: 5px;
 	width: 100%;
-	margin: 10px 0px 3px 0px;
+	margin: 16px 0px 3px 0px;
 	display: block;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -117,7 +117,7 @@ progress::-webkit-progress-value {
 	-o-transition: all 0s;
 	-ms-transition: all 0s;
 	transition: all 0s;
-	background-color: #33B5E5;
+	background-color: #1D8DDE;
 }
 
 progress::-moz-progress-bar  {
