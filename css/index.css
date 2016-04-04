@@ -34,7 +34,7 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.jpg) no-repeat center top; /* 170px x 200px */
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:50%;
@@ -93,16 +93,50 @@ body {
 }
 
 
-progress[value]::-webkit-progress-value {
-  background-image:
-	   -webkit-linear-gradient(-45deg, 
-	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
-	                           rgba(0,0, 0, .1) 66%, transparent 66%),
-	   -webkit-linear-gradient(top, 
-	                           rgba(255, 255, 255, .25), 
-	                           rgba(0, 0, 0, .25)),
-	   -webkit-linear-gradient(left, #09c, #f44);
-
-    border-radius: 2px; 
-    background-size: 35px 20px, 100% 100%, 100% 100%;
+progress {
+	height: 2px;
+	width: 100%;
+	margin: 3px 0px 3px 0px;
+	display: block;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	border-radius: 50%;
+	background: rgba(255,255,255,0.1);
 }
+
+progress::-webkit-progress-bar {
+	padding: 0px;
+	background: rgba(255,255,255,0.1);
+}
+
+progress::-webkit-progress-value {
+	border-radius: 5px;
+	-webkit-transition: all 0s;
+	-moz-transition: all 0s;
+	-o-transition: all 0s;
+	-ms-transition: all 0s;
+	transition: all 0s;
+	background-color: #33B5E5;
+}
+
+progress::-moz-progress-bar  {
+	padding: 0px;
+	border-radius: 5px;
+	-webkit-transition: all 0s;
+	-moz-transition: all 0s;
+	-o-transition: all 0s;
+	-ms-transition: all 0s;
+	transition: all 0s;
+	background-color: #33B5E5;
+}
+
+progress  {
+	border-radius: 5px;
+	-webkit-transition: all 0s;
+	-moz-transition: all 0s;
+	-o-transition: all 0s;
+	-ms-transition: all 0s;
+	transition: all 0s;
+}
+
