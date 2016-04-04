@@ -24,18 +24,7 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
+    background-color:#FFF;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     height:100%;
     margin:0px;
@@ -101,4 +90,19 @@ body {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+
+progress[value]::-webkit-progress-value {
+  background-image:
+	   -webkit-linear-gradient(-45deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #09c, #f44);
+
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
 }
