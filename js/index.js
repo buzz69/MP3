@@ -1,6 +1,8 @@
 var my_media=null;
 var mediaTimer=null;
 var playing = false;
+var mediasCounter=0;
+var mediasList=new Array();
 
 var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/media_playback_stop.png" onclick="stopAudio();"></img></center></td><td width=30><center><div id="currentTimeDiv" style="color:#33B5E5"></div></center></td><td><div id="progressWrapper" style="width:100%;height:25px;"><progress value=\'0\' max=\'100\'></progress></div></td><td width=30><center><div id="endTimeDiv" style="color:#33B5E5"></div></center></td></tr></table>';
 
@@ -15,7 +17,8 @@ $(document).on("pageshow", "#splash",function(event){
 });
 
 var onShake = function () {
-  alert('Shake');
+  randomIndex=getRandomInt(0,mediasList.length-1);
+  playSound(mediasList[randomIndex]);
 };
 
 // Stop watching for shake gestures
@@ -28,6 +31,8 @@ function generateButtons(){
 		for(mp3Title in mediasTab[categorie]){
 			if(mp3Title!='titre'){
 				content+='<li><a href="#" onclick="playSound(\''+categorie+'/'+mediasTab[categorie][mp3Title]+'\');return false;">'+mp3Title+'</a></li>';
+				mediasList[mediasCounter]=categorie+'/'+mediasTab[categorie][mp3Title];
+				mediasCounter++;
 			}
 		}
 	}
@@ -136,6 +141,10 @@ function exitFromApp(){
 	else if (navigator.device) {
 		navigator.device.exitApp();
 	}
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function dump(arr,level) {
