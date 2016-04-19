@@ -10,6 +10,7 @@ $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
 	generateButtons();
 	shake.startWatch(onShake);
+	window.plugins.insomnia.keepAwake();
 });
 
 $(document).on("pageshow", "#splash",function(event){
@@ -135,6 +136,7 @@ function stopAudio() {
 }
 
 function exitFromApp(){
+	window.plugins.insomnia.allowSleepAgain();
 	if (navigator.app) {
 	   navigator.app.exitApp();
 	}
