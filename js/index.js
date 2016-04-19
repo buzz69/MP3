@@ -136,7 +136,6 @@ function stopAudio() {
 }
 
 function exitFromApp(){
-	window.plugins.insomnia.allowSleepAgain();
 	if (navigator.app) {
 	   navigator.app.exitApp();
 	}

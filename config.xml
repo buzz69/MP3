@@ -34,6 +34,7 @@
   <gap:plugin name="org.apache.cordova.network-information"/>
   <gap:plugin name="org.apache.cordova.splashscreen"/>
   <gap:plugin name="org.apache.cordova.vibration"/>
+  <plugin name="nl.x-services.plugins.insomnia" spec="4.0.1" source="pgb" />
   <icon src="icon.png"/>
   <icon src="res/icon/android/icon-36-ldpi.png" platform="android" qualifier="ldpi"/>
   <icon src="res/icon/android/icon-48-mdpi.png" platform="android" qualifier="mdpi"/>
