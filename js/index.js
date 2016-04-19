@@ -19,7 +19,7 @@ function generateButtons(){
 		content+='<li data-role="list-divider">'+mediasTab[categorie]['titre']+'</li>';
 		for(mp3Title in mediasTab[categorie]){
 			if(mp3Title!='titre'){
-				content+='<li><a href="#" onclick="playSound(\''+categorie+'\\'+mediasTab[categorie][mp3Title]+'\');return false;">'+mp3Title+'</a></li>';
+				content+='<li><a href="#" onclick="playSound(\''+categorie+'/'+mediasTab[categorie][mp3Title]+'\');return false;">'+mp3Title+'</a></li>';
 			}
 		}
 	}
