@@ -7,11 +7,19 @@ var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/medi
 $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
 	generateButtons();
+	shake.startWatch(onShake);
 });
 
 $(document).on("pageshow", "#splash",function(event){
 	setTimeout('$.mobile.changePage( "#home", { transition: "slideup"});',1000);
 });
+
+var onShake = function () {
+  alert('Shake');
+};
+
+// Stop watching for shake gestures
+//shake.stopWatch();
 
 function generateButtons(){
 	content='<ul data-role="listview">';
