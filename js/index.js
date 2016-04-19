@@ -6,11 +6,26 @@ var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/medi
 
 $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
+	generateButtons();
 });
 
 $(document).on("pageshow", "#splash",function(event){
 	setTimeout('$.mobile.changePage( "#home", { transition: "slideup"});',1000);
 });
+
+function generateButtons(){
+	content='<ul data-role="listview">';
+	for(categorie in mediasTab){
+		content+='<li data-role="list-divider">'+mediasTab[categorie]['titre']+'</li>';
+		for(mp3Title in mediasTab[categorie]){
+			if(mp3Title!='titre'){
+				content+='<li><a href="#" onclick="playSound(\''+categorie+'\\'+mediasTab[categorie][mp3Title]+'\');return false;">'+mp3Title+'</a></li>';
+			}
+		}
+	}
+	content+='</ul>';
+	$('#mainDiv').html(content);
+}
 
 function backKeyDown() { 
 	exitFromApp();
