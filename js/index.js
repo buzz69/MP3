@@ -7,10 +7,17 @@ var shakeEnabled='off';
 
 var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/media_playback_stop.png" onclick="stopAudio();"></img></center></td><td width=30><center><div id="currentTimeDiv" style="color:#33B5E5"></div></center></td><td><div id="progressWrapper" style="width:100%;height:25px;"><progress value=\'0\' max=\'100\'></progress></div></td><td width=30><center><div id="endTimeDiv" style="color:#33B5E5"></div></center></td></tr></table>';
 
+$(document).on("pageshow", "#leftpanel",function(event){
+	if(shakeEnabled=='on'){
+		$('#checkboxShake').prop("checked", true).checkboxradio('refresh');
+	}else{
+		$('#checkboxShake').prop("checked", false).checkboxradio('refresh');
+	}
+});
+
 function shakeFlipChanged(e) {
 	var id = this.id,
 	shakeEnabled = this.value;
-	$('#statusBar').html('Shake = '+shakeEnabled);
 	if (storageAvailable('localStorage')) {
 		localStorage.setItem('shake',shakeEnabled);
 	}
@@ -42,9 +49,8 @@ var onShake = function () {
 //shake.stopWatch();
 
 function getSettings(){
-	$('#statusBar').html('Get settings...');
 	shakeEnabled='off';
-	$('#checkboxShake').prop("checked", false);
+	//$('#checkboxShake').prop("checked", false);
 	if (storageAvailable('localStorage')) {
 		if(!localStorage.getItem('shake')) {
 			localStorage.setItem('shake','off');
@@ -53,14 +59,11 @@ function getSettings(){
 		}
 	}
 	if(shakeEnabled=='on'){
-		$('#statusBar').html('Start shake listener...');
 		shake.startWatch(onShake);
-		$('#statusBar').html('Set value = '+shakeEnabled);
-		$('#checkboxShake').prop("checked", true);
+		//$('#checkboxShake').prop("checked", true);
 	}
-	$('#statusBar').html('Refresh switch...');
-	$('#checkboxShake').checkboxradio('refresh');
-	$('#statusBar').html('Set onchange event...');
+	//$('#statusBar').html('Refresh switch...');
+	//$('#checkboxShake').checkboxradio('refresh');
 	$('#checkboxShake').on("change",shakeFlipChanged);
 }
 
