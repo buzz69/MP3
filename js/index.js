@@ -4,6 +4,7 @@ var playing = false;
 var mediasCounter=0;
 var mediasList=new Array();
 var shakeEnabled='off';
+var keepAwake='off';
 
 var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/media_playback_stop.png" onclick="stopAudio();"></img></center></td><td width=30><center><div id="currentTimeDiv" style="color:#33B5E5"></div></center></td><td><div id="progressWrapper" style="width:100%;height:25px;"><progress value=\'0\' max=\'100\'></progress></div></td><td width=30><center><div id="endTimeDiv" style="color:#33B5E5"></div></center></td></tr></table>';
 
@@ -12,6 +13,11 @@ $( "#leftpanel" ).on( "panelopen", function( event, ui ) {
 		$('#checkboxShake').off('change').prop("checked", true).checkboxradio('refresh').on("change",shakeFlipChanged);
 	}else{
 		$('#checkboxShake').off('change').prop("checked", false).checkboxradio('refresh').on("change",shakeFlipChanged);
+	}
+	if(keepAwake=='on'){
+		$('#checkboxSleep').off('change').prop("checked", true).checkboxradio('refresh').on("change",sleepFlipChanged);
+	}else{
+		$('#checkboxSleep').off('change').prop("checked", false).checkboxradio('refresh').on("change",sleepFlipChanged);
 	}
 } );
 
@@ -29,12 +35,26 @@ function shakeFlipChanged(e) {
 	}
 }
 
+function sleepFlipChanged(e) {
+	var isChecked =  $('#checkboxSleep').prop("checked");
+	if(isChecked){
+		keepAwake = 'on';
+		window.plugins.insomnia.keepAwake();
+	}else{
+		keepAwake = 'off';
+		window.plugins.insomnia.allowSleepAgain();
+	}
+	if (storageAvailable('localStorage')) {
+		localStorage.setItem('awake',keepAwake);
+	}
+}
+
 $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
 	getSettings();
 	generateButtons();
 	//shake.startWatch(onShake);
-	window.plugins.insomnia.keepAwake();
+	//window.plugins.insomnia.keepAwake();
 });
 
 $(document).on("pageshow", "#splash",function(event){
@@ -49,17 +69,29 @@ var onShake = function () {
 // Stop watching for shake gestures
 //shake.stopWatch();
 
+//allow sleep
+//window.plugins.insomnia.allowSleepAgain();
+
 function getSettings(){
 	shakeEnabled='off';
+	keepAwake='off';
 	if (storageAvailable('localStorage')) {
 		if(!localStorage.getItem('shake')) {
 			localStorage.setItem('shake','off');
 		}else{
 			shakeEnabled=localStorage.getItem('shake');
 		}
+		if(!localStorage.getItem('awake')) {
+			localStorage.setItem('awake','off');
+		}else{
+			keepAwake=localStorage.getItem('awake');
+		}
 	}
 	if(shakeEnabled=='on'){
 		shake.startWatch(onShake);
+	}
+	if(keepAwake=='on'){
+		window.plugins.insomnia.keepAwake();
 	}
 }
 
