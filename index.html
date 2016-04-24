@@ -36,8 +36,20 @@
 			
 			<!-- panel  -->
 			<div data-role="panel" id="leftpanel" data-position="left" data-display="overlay" data-theme="a">
-				<label for="checkboxShake">Enable shake</label>
-				<input name="checkboxShake" id="checkboxShake" type="checkbox">
+				<ul data-role="listview" data-icon="false" data-divider-theme="b">
+					<li data-role="list-divider">Settings</li>
+					<li>
+					<form>
+						<div class="ui-field-contain">
+							<label for="flipShake">Random sound on shake:</label>
+							<select name="flipShake" id="flipShake" data-role="slider">
+								<option value="off">Off</option>
+								<option value="on">On</option>
+							</select>
+						</div>
+					</form>
+					</li>
+				</ul>
 			</div><!-- /panel -->
 		</div>
 		
