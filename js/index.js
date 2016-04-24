@@ -10,7 +10,7 @@ var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/medi
 function shakeFlipChanged(e) {
 	var id = this.id,
 	shakeEnabled = this.value;
-	alert('Value = '+shakeEnabled);
+	$('#statusBar').html('Shake = '+shakeEnabled);
 	if (storageAvailable('localStorage')) {
 		localStorage.setItem('shake',shakeEnabled);
 	}
@@ -55,7 +55,7 @@ function getSettings(){
 	if(shakeEnabled=='on'){
 		shake.startWatch(onShake);
 	}
-	alert('Shake = '+shakeEnabled);
+	$('#statusBar').html('Shake = '+shakeEnabled);
 }
 
 function generateButtons(){
