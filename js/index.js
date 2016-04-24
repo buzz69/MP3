@@ -9,23 +9,25 @@ var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/medi
 
 $(document).on("pageshow", "#leftpanel",function(event){
 	if(shakeEnabled=='on'){
-		$('#checkboxShake').prop("checked", true).checkboxradio('refresh');
+		$('#checkboxShake').off('change').prop("checked", true).checkboxradio('refresh').on("change",shakeFlipChanged);
 	}else{
-		$('#checkboxShake').prop("checked", false).checkboxradio('refresh');
+		$('#checkboxShake').off('change').prop("checked", false).checkboxradio('refresh').on("change",shakeFlipChanged);
 	}
 });
 
 function shakeFlipChanged(e) {
-	var id = this.id,
-	shakeEnabled = this.value;
+	var isChecked =  $('#checkboxShake').prop("checked");
+	if(isChecked){
+		shakeEnabled = 'on';
+		shake.startWatch(onShake);
+	}else{
+		shakeEnabled = 'off';
+		shake.stopWatch();
+	}
 	if (storageAvailable('localStorage')) {
 		localStorage.setItem('shake',shakeEnabled);
 	}
-	if(shakeEnabled=='on'){
-		shake.startWatch(onShake);
-	}else{
-		shake.stopWatch();
-	}
+	alert('Shake = '+shakeEnabled);
 }
 
 $( document ).bind( "deviceready", function() {
@@ -64,7 +66,8 @@ function getSettings(){
 	}
 	//$('#statusBar').html('Refresh switch...');
 	//$('#checkboxShake').checkboxradio('refresh');
-	$('#checkboxShake').on("change",shakeFlipChanged);
+	//$('#checkboxShake').on("change",shakeFlipChanged);
+	alert('Shake = '+shakeEnabled);
 }
 
 function generateButtons(){
