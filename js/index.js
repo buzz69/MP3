@@ -52,11 +52,11 @@ function getSettings(){
 		}
 	}
 	$('#statusBar').html('Set value = '+shakeEnabled);
-	$('#flip-1').val(shakeEnabled);
+	$('#flipShake').val(shakeEnabled);
 	$('#statusBar').html('Refresh switch...');
-	$('#flip-1').flipswitch("refresh");
+	$('#flipShake').slider("refresh");
 	$('#statusBar').html('Set onchange event...');
-	$('#flip-1').on("change",shakeFlipChanged);
+	$('#flipShake').on("change",shakeFlipChanged);
 	if(shakeEnabled=='on'){
 		$('#statusBar').html('Start shake listener...');
 		shake.startWatch(onShake);
