@@ -23,10 +23,10 @@ function shakeFlipChanged(e) {
 
 $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
+	getSettings();
 	generateButtons();
 	//shake.startWatch(onShake);
 	window.plugins.insomnia.keepAwake();
-	getSettings();
 });
 
 $(document).on("pageshow", "#splash",function(event){
@@ -42,8 +42,8 @@ var onShake = function () {
 //shake.stopWatch();
 
 function getSettings(){
+	$('#statusBar').html('Get settings...');
 	shakeEnabled='off';
-	//shake.stopWatch();
 	if (storageAvailable('localStorage')) {
 		if(!localStorage.getItem('shake')) {
 			localStorage.setItem('shake','off');
@@ -51,11 +51,11 @@ function getSettings(){
 			shakeEnabled=localStorage.getItem('shake');
 		}
 	}
+	$('#statusBar').html('ShakeEnabled = '+shakeEnabled);
 	$('#flip-1').val(shakeEnabled).flipswitch("refresh").on("change",shakeFlipChanged);
 	if(shakeEnabled=='on'){
 		shake.startWatch(onShake);
 	}
-	$('#statusBar').html('Shake = '+shakeEnabled);
 }
 
 function generateButtons(){
