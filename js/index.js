@@ -44,6 +44,7 @@ var onShake = function () {
 function getSettings(){
 	$('#statusBar').html('Get settings...');
 	shakeEnabled='off';
+	$('#checkboxShake').prop("checked", false);
 	if (storageAvailable('localStorage')) {
 		if(!localStorage.getItem('shake')) {
 			localStorage.setItem('shake','off');
@@ -51,16 +52,16 @@ function getSettings(){
 			shakeEnabled=localStorage.getItem('shake');
 		}
 	}
-	$('#statusBar').html('Set value = '+shakeEnabled);
-	$('#flipShake').val(shakeEnabled);
-	$('#statusBar').html('Refresh switch...');
-	$('#flipShake').slider("refresh");
-	$('#statusBar').html('Set onchange event...');
-	$('#flipShake').on("change",shakeFlipChanged);
 	if(shakeEnabled=='on'){
 		$('#statusBar').html('Start shake listener...');
 		shake.startWatch(onShake);
+		$('#statusBar').html('Set value = '+shakeEnabled);
+		$('#checkboxShake').prop("checked", true);
 	}
+	$('#statusBar').html('Refresh switch...');
+	$('#checkboxShake').checkboxradio('refresh');
+	$('#statusBar').html('Set onchange event...');
+	$('#checkboxShake').on("change",shakeFlipChanged);
 }
 
 function generateButtons(){
