@@ -51,9 +51,14 @@ function getSettings(){
 			shakeEnabled=localStorage.getItem('shake');
 		}
 	}
-	$('#statusBar').html('ShakeEnabled = '+shakeEnabled);
-	$('#flip-1').val(shakeEnabled).flipswitch("refresh").on("change",shakeFlipChanged);
+	$('#statusBar').html('Set value = '+shakeEnabled);
+	$('#flip-1').val(shakeEnabled);
+	$('#statusBar').html('Refresh switch...');
+	$('#flip-1').flipswitch("refresh");
+	$('#statusBar').html('Set onchange event...');
+	$('#flip-1').on("change",shakeFlipChanged);
 	if(shakeEnabled=='on'){
+		$('#statusBar').html('Start shake listener...');
 		shake.startWatch(onShake);
 	}
 }
