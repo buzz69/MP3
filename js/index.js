@@ -10,6 +10,7 @@ var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/medi
 function shakeFlipChanged(e) {
 	var id = this.id,
 	shakeEnabled = this.value;
+	alert('Value = '+shakeEnabled);
 	if (storageAvailable('localStorage')) {
 		localStorage.setItem('shake',shakeEnabled);
 	}
@@ -19,8 +20,6 @@ function shakeFlipChanged(e) {
 		shake.stopWatch();
 	}
 }
-
-$("#flip-1").on("change", shakeFlipChanged);
 
 $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
@@ -44,7 +43,7 @@ var onShake = function () {
 
 function getSettings(){
 	shakeEnabled='off';
-	shake.stopWatch();
+	//shake.stopWatch();
 	if (storageAvailable('localStorage')) {
 		if(!localStorage.getItem('shake')) {
 			localStorage.setItem('shake','off');
@@ -52,11 +51,11 @@ function getSettings(){
 			shakeEnabled=localStorage.getItem('shake');
 		}
 	}
-	$('#flip-1').off("change").val(shakeEnabled).flipswitch("refresh").on("change",shakeFlipChanged);
+	$('#flip-1').val(shakeEnabled).flipswitch("refresh").on("change",shakeFlipChanged);
 	if(shakeEnabled=='on'){
 		shake.startWatch(onShake);
-		$('#flip-1').val("on").flipswitch( "refresh" );
 	}
+	alert('Shake = '+shakeEnabled);
 }
 
 function generateButtons(){
