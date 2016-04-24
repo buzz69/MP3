@@ -3,14 +3,31 @@ var mediaTimer=null;
 var playing = false;
 var mediasCounter=0;
 var mediasList=new Array();
+var shakeEnabled='off';
 
 var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/media_playback_stop.png" onclick="stopAudio();"></img></center></td><td width=30><center><div id="currentTimeDiv" style="color:#33B5E5"></div></center></td><td><div id="progressWrapper" style="width:100%;height:25px;"><progress value=\'0\' max=\'100\'></progress></div></td><td width=30><center><div id="endTimeDiv" style="color:#33B5E5"></div></center></td></tr></table>';
+
+function shakeFlipChanged(e) {
+	var id = this.id,
+	shakeEnabled = this.value;
+	if (storageAvailable('localStorage')) {
+		localStorage.setItem('shake',shakeEnabled);
+	}
+	if(shakeEnabled=='on'){
+		shake.startWatch(onShake);
+	}else{
+		shake.stopWatch();
+	}
+}
+
+$("#flip-1").on("change", shakeFlipChanged);
 
 $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
 	generateButtons();
-	shake.startWatch(onShake);
+	//shake.startWatch(onShake);
 	window.plugins.insomnia.keepAwake();
+	getSettings();
 });
 
 $(document).on("pageshow", "#splash",function(event){
@@ -24,6 +41,23 @@ var onShake = function () {
 
 // Stop watching for shake gestures
 //shake.stopWatch();
+
+function getSettings(){
+	shakeEnabled='off';
+	shake.stopWatch();
+	if (storageAvailable('localStorage')) {
+		if(!localStorage.getItem('shake')) {
+			localStorage.setItem('shake','off');
+		}else{
+			shakeEnabled=localStorage.getItem('shake');
+		}
+	}
+	$('#flip-1').off("change").val(shakeEnabled).flipswitch("refresh").on("change",shakeFlipChanged);
+	if(shakeEnabled=='on'){
+		shake.startWatch(onShake);
+		$('#flip-1').val("on").flipswitch( "refresh" );
+	}
+}
 
 function generateButtons(){
 	content='<ul data-role="listview">';
@@ -171,4 +205,17 @@ function dump(arr,level) {
 		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
 	}
 	return dumped_text;
+}
+
+function storageAvailable(type) {
+	try {
+		var storage = window[type],
+			x = '__storage_test__';
+		storage.setItem(x, x);
+		storage.removeItem(x);
+		return true;
+	}
+	catch(e) {
+		return false;
+	}
 }
