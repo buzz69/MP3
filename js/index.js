@@ -8,20 +8,25 @@ var shakeEnabled='off';
 var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/media_playback_stop.png" onclick="stopAudio();"></img></center></td><td width=30><center><div id="currentTimeDiv" style="color:#33B5E5"></div></center></td><td><div id="progressWrapper" style="width:100%;height:25px;"><progress value=\'0\' max=\'100\'></progress></div></td><td width=30><center><div id="endTimeDiv" style="color:#33B5E5"></div></center></td></tr></table>';
 
 $( "#leftpanel" ).on( "panelopen", function( event, ui ) {
-	$('#flipShake').off('change').val(shakeEnabled).flipswitch('refresh').on("change",shakeFlipChanged);
+	if(shakeEnabled=='on'){
+		$('#checkboxShake').off('change').prop("checked", true).checkboxradio('refresh').on("change",shakeFlipChanged);
+	}else{
+		$('#checkboxShake').off('change').prop("checked", false).checkboxradio('refresh').on("change",shakeFlipChanged);
+	}
 } );
 
 function shakeFlipChanged(e) {
-	shakeEnabled =  $('#flipShake').val();
-	if(shakeEnabled=='on'){
+	var isChecked =  $('#checkboxShake').prop("checked");
+	if(isChecked){
+		shakeEnabled = 'on';
 		shake.startWatch(onShake);
 	}else{
+		shakeEnabled = 'off';
 		shake.stopWatch();
 	}
 	if (storageAvailable('localStorage')) {
 		localStorage.setItem('shake',shakeEnabled);
 	}
-	//alert('Shake = '+shakeEnabled);
 }
 
 $( document ).bind( "deviceready", function() {
@@ -46,7 +51,6 @@ var onShake = function () {
 
 function getSettings(){
 	shakeEnabled='off';
-	//$('#flipShake').prop("checked", false);
 	if (storageAvailable('localStorage')) {
 		if(!localStorage.getItem('shake')) {
 			localStorage.setItem('shake','off');
@@ -57,7 +61,6 @@ function getSettings(){
 	if(shakeEnabled=='on'){
 		shake.startWatch(onShake);
 	}
-	//alert('Shake = '+shakeEnabled);
 }
 
 function generateButtons(){
