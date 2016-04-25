@@ -5,6 +5,7 @@ var mediasCounter=0;
 var mediasList=new Array();
 var shakeEnabled='off';
 var keepAwake='off';
+var currentPage='';
 
 var statusBarHtml='<table width=100%><tr><td width=50><center><img src="img/media_playback_stop.png" onclick="stopAudio();"></img></center></td><td width=30><center><div id="currentTimeDiv" style="color:#33B5E5"></div></center></td><td><div id="progressWrapper" style="width:100%;height:25px;"><progress value=\'0\' max=\'100\'></progress></div></td><td width=30><center><div id="endTimeDiv" style="color:#33B5E5"></div></center></td></tr></table>';
 
@@ -52,7 +53,7 @@ function sleepFlipChanged(e) {
 $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
 	getSettings();
-	generateButtons();
+	generateButtons('HOME');
 	//shake.startWatch(onShake);
 	//window.plugins.insomnia.keepAwake();
 });
@@ -95,19 +96,35 @@ function getSettings(){
 	}
 }
 
-function generateButtons(){
-	content='<ul data-role="listview">';
-	for(categorie in mediasTab){
-		content+='<li data-role="list-divider">'+mediasTab[categorie]['titre']+'</li>';
-		for(mp3Title in mediasTab[categorie]){
-			if(mp3Title!='titre'){
-				content+='<li><a href="#" onclick="playSound(\''+categorie+'/'+mediasTab[categorie][mp3Title]+'\');return false;">'+mp3Title+'</a></li>';
-				mediasList[mediasCounter]=categorie+'/'+mediasTab[categorie][mp3Title];
-				mediasCounter++;
+function generateButtons(category){
+	if(category=='HOME'){
+		counter=0;
+		content+='<table width=95%>';
+		for(categorie in mediasTab){
+			counter++;
+			if(counter==1 || counter==4 counter==7 || counter==10 || counter==13 || counter==16 || counter==19 || counter==22 || counter==25 || counter==28 || counter==31 || counter==34 || counter==37 || counter==40){content+='<tr>';}
+			content+='<td align=center valign=center width=33% onclick="generateButtons(\''+categorie+'\');"><div style="padding:10px"><center><img src="'+mediasTab[categorie]['thumbnail']+'"/><p>'+mediasTab[categorie]['titre']+'</p></center></div></td>';
+			if(counter==3 || counter==6 counter==9 || counter==12 || counter==15 || counter==18 || counter==21 || counter==24 || counter==27 || counter==30 || counter==33 || counter==36 || counter==39){content+='</tr>';}
+		}
+		content+='</table>';
+	}else{
+		for(categorie in mediasTab){
+			if(categorie==category){
+				content+='<img src="'+mediasTab[categorie]['banner']+'"/>';
+				content+='<ul data-role="listview">';
+				//content+='<li data-role="list-divider">'+mediasTab[categorie]['titre']+'</li>';
+				for(mp3Title in mediasTab[categorie]){
+					if(mp3Title!='titre' && mp3Title!='banner' && mp3Title!='thumbnail'){
+						content+='<li><a href="#" onclick="playSound(\''+categorie+'/'+mediasTab[categorie][mp3Title]+'\');return false;">'+mp3Title+'</a></li>';
+						mediasList[mediasCounter]=categorie+'/'+mediasTab[categorie][mp3Title];
+						mediasCounter++;
+					}
+				}
+				content+='</ul>';
 			}
 		}
 	}
-	content+='</ul>';
+	currentPage=category;
 	$('#mainDiv').html(content);
 }
 
@@ -206,11 +223,15 @@ function stopAudio() {
 }
 
 function exitFromApp(){
-	if (navigator.app) {
-	   navigator.app.exitApp();
-	}
-	else if (navigator.device) {
-		navigator.device.exitApp();
+	if(currentPage!='HOME'){
+		generateButtons('HOME');
+	}else{
+		if (navigator.app) {
+		   navigator.app.exitApp();
+		}
+		else if (navigator.device) {
+			navigator.device.exitApp();
+		}
 	}
 }
 
