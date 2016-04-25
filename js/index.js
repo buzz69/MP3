@@ -99,12 +99,12 @@ function getSettings(){
 function generateButtons(category){
 	if(category=='HOME'){
 		counter=0;
-		content+='<table width=95%>';
+		content='<table width=95%>';
 		for(categorie in mediasTab){
 			counter++;
-			if(counter==1 || counter==4 counter==7 || counter==10 || counter==13 || counter==16 || counter==19 || counter==22 || counter==25 || counter==28 || counter==31 || counter==34 || counter==37 || counter==40){content+='<tr>';}
+			if(counter==1 || counter==4 || counter==7 || counter==10 || counter==13 || counter==16 || counter==19 || counter==22 || counter==25 || counter==28 || counter==31 || counter==34 || counter==37 || counter==40){content+='<tr>';}
 			content+='<td align=center valign=center width=33% onclick="generateButtons(\''+categorie+'\');"><div style="padding:10px"><center><img src="'+mediasTab[categorie]['thumbnail']+'"/><p>'+mediasTab[categorie]['titre']+'</p></center></div></td>';
-			if(counter==3 || counter==6 counter==9 || counter==12 || counter==15 || counter==18 || counter==21 || counter==24 || counter==27 || counter==30 || counter==33 || counter==36 || counter==39){content+='</tr>';}
+			if(counter==3 || counter==6 || counter==9 || counter==12 || counter==15 || counter==18 || counter==21 || counter==24 || counter==27 || counter==30 || counter==33 || counter==36 || counter==39){content+='</tr>';}
 		}
 		content+='</table>';
 	}else{
