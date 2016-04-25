@@ -25,7 +25,6 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#FFF;
-	background:url(../img/concrete-texture.jpg) no-repeat center top;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     height:100%;
     margin:0px;
@@ -152,5 +151,9 @@ p.category-title{
 }
 
 p.titleApp{
-	font-size:1.5em;
+	font-size:3em;
+}
+
+#mainDiv{
+	background:url(../img/concrete-texture.jpg) no-repeat center top;
 }
