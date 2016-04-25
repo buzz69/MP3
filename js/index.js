@@ -54,13 +54,13 @@ $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
 	getSettings();
 	getSounds();
-	generateButtons('HOME');
+	//generateButtons('HOME');
 	//shake.startWatch(onShake);
 	//window.plugins.insomnia.keepAwake();
 });
 
 $(document).on("pageshow", "#splash",function(event){
-	setTimeout('$.mobile.changePage( "#home", { transition: "slideup"});',2000);
+	setTimeout('$.mobile.changePage( "#home", { transition: "slideup"});generateButtons(\'HOME\');',2000);
 });
 
 var onShake = function () {
@@ -119,14 +119,14 @@ function generateButtons(category){
 			if(counter==1 || counter==4 || counter==7 || counter==10 || counter==13 || counter==16 || counter==19 || counter==22 || counter==25 || counter==28 || counter==31 || counter==34 || counter==37 || counter==40){content+='<div class="ui-block-a">';}
 			if(counter==2 || counter==5 || counter==8 || counter==11 || counter==14 || counter==17 || counter==20 || counter==23 || counter==26 || counter==29 || counter==32 || counter==35 || counter==38 || counter==41){content+='<div class="ui-block-b">';}
 			if(counter==3 || counter==6 || counter==9 || counter==12 || counter==15 || counter==18 || counter==21 || counter==24 || counter==27 || counter==30 || counter==33 || counter==36 || counter==39 || counter==42){content+='<div class="ui-block-c">';}
-			content+='<center><img width=100 src="'+mediasTab[categorie]['thumbnail']+'" onclick="generateButtons(\''+categorie+'\');" class="animated flipInY"/><p class="category-title animated flipInX">'+mediasTab[categorie]['titre']+'</p></center></div>';
+			content+='<center><img width=100 src="'+mediasTab[categorie]['thumbnail']+'" onclick="generateButtons(\''+categorie+'\');" class="animated flipInY"/><p class="category-title animated zoomIn">'+mediasTab[categorie]['titre']+'</p></center></div>';
 		}
 		content+='</div>';
 		$('#mainDiv').html(content);
 	}else{
 		for(categorie in mediasTab){
 			if(categorie==category){
-				$("#mainDiv").append('<div class="ui-grid-solo"><div class="ui-block-a" id="banner-wrapper"><img src="'+mediasTab[categorie]['banner']+'" class="animated flipInX"/></div></div>');
+				$("#mainDiv").append('<div class="ui-grid-solo"><div class="ui-block-a" id="banner-wrapper"><img src="'+mediasTab[categorie]['banner']+'" class="animated bounceInLeft"/></div></div>');
 				$("#mainDiv").append("<ul id='mp3list' data-role='listview' data-inset='true'></ul>");
 				$("#mainDiv").trigger("create");
 				for(mp3Title in mediasTab[categorie]){
