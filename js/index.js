@@ -103,15 +103,16 @@ function generateButtons(category){
 		for(categorie in mediasTab){
 			counter++;
 			if(counter==1 || counter==4 || counter==7 || counter==10 || counter==13 || counter==16 || counter==19 || counter==22 || counter==25 || counter==28 || counter==31 || counter==34 || counter==37 || counter==40){content+='<tr>';}
-			content+='<td align=center valign=center width=33% onclick="generateButtons(\''+categorie+'\');"><div style="padding:10px"><center><img src="'+mediasTab[categorie]['thumbnail']+'"/><p>'+mediasTab[categorie]['titre']+'</p></center></div></td>';
+			content+='<td align=center valign=center width=33% onclick="generateButtons(\''+categorie+'\');"><div style="width:100%;padding:10px"><center><img width=100 src="'+mediasTab[categorie]['thumbnail']+'"/><p>'+mediasTab[categorie]['titre']+'</p></center></div></td>';
 			if(counter==3 || counter==6 || counter==9 || counter==12 || counter==15 || counter==18 || counter==21 || counter==24 || counter==27 || counter==30 || counter==33 || counter==36 || counter==39){content+='</tr>';}
 		}
 		content+='</table>';
+		$('#mainDiv').html(content);
 	}else{
 		for(categorie in mediasTab){
 			if(categorie==category){
 				content='<img src="'+mediasTab[categorie]['banner']+'"/>';
-				content+='<ul data-role="listview">';
+				content+='<ul data-role="listview" id="mp3list">';
 				//content+='<li data-role="list-divider">'+mediasTab[categorie]['titre']+'</li>';
 				for(mp3Title in mediasTab[categorie]){
 					if(mp3Title!='titre' && mp3Title!='banner' && mp3Title!='thumbnail'){
@@ -123,9 +124,10 @@ function generateButtons(category){
 				content+='</ul>';
 			}
 		}
+		$('#mainDiv').html(content);
+		$("#mp3list").listview("refresh");
 	}
 	currentPage=category;
-	$('#mainDiv').html(content);
 }
 
 function backKeyDown() { 
