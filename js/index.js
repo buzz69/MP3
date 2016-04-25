@@ -53,6 +53,7 @@ function sleepFlipChanged(e) {
 $( document ).bind( "deviceready", function() {
 	document.addEventListener("backbutton", backKeyDown, true);
 	getSettings();
+	getSounds();
 	generateButtons('HOME');
 	//shake.startWatch(onShake);
 	//window.plugins.insomnia.keepAwake();
@@ -96,7 +97,20 @@ function getSettings(){
 	}
 }
 
+function getSounds(){
+	for(categorie in mediasTab){
+		for(mp3Title in mediasTab[categorie]){
+			if(mp3Title!='titre' && mp3Title!='banner' && mp3Title!='thumbnail'){
+				mediasList[mediasCounter]=categorie+'/'+mediasTab[categorie][mp3Title];
+				mediasCounter++;
+			}
+		}
+	}
+}
+
 function generateButtons(category){
+	currentPage=category;
+	$('#mainDiv').html('');
 	if(category=='HOME'){
 		counter=0;
 		content='<table width=95%>';
@@ -111,23 +125,18 @@ function generateButtons(category){
 	}else{
 		for(categorie in mediasTab){
 			if(categorie==category){
-				content='<img src="'+mediasTab[categorie]['banner']+'"/>';
-				content+='<ul data-role="listview" id="mp3list">';
-				//content+='<li data-role="list-divider">'+mediasTab[categorie]['titre']+'</li>';
+				$("#mainDiv").append('<img src="'+mediasTab[categorie]['banner']+'"/>');
+				$("#mainDiv").append("<ul id='mp3list' data-role='listview' data-inset='true'></ul>");
+				$("#mainDiv").trigger("create");
 				for(mp3Title in mediasTab[categorie]){
 					if(mp3Title!='titre' && mp3Title!='banner' && mp3Title!='thumbnail'){
-						content+='<li><a href="#" onclick="playSound(\''+categorie+'/'+mediasTab[categorie][mp3Title]+'\');return false;">'+mp3Title+'</a></li>';
-						mediasList[mediasCounter]=categorie+'/'+mediasTab[categorie][mp3Title];
-						mediasCounter++;
+						$("#mp3list").append('<li><a href="#" onclick="playSound(\''+categorie+'/'+mediasTab[categorie][mp3Title]+'\');return false;">'+mp3Title+'</a></li>');
+						$("#mp3list").listview("refresh");
 					}
 				}
-				content+='</ul>';
 			}
 		}
-		$('#mainDiv').html(content);
-		$("#mp3list").listview("refresh");
 	}
-	currentPage=category;
 }
 
 function backKeyDown() { 
