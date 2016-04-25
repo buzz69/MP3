@@ -110,7 +110,7 @@ function generateButtons(category){
 	}else{
 		for(categorie in mediasTab){
 			if(categorie==category){
-				content+='<img src="'+mediasTab[categorie]['banner']+'"/>';
+				content='<img src="'+mediasTab[categorie]['banner']+'"/>';
 				content+='<ul data-role="listview">';
 				//content+='<li data-role="list-divider">'+mediasTab[categorie]['titre']+'</li>';
 				for(mp3Title in mediasTab[categorie]){
