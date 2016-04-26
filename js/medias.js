@@ -70,7 +70,7 @@ var mediasTab = {
 		"L'autre grand mystère" : 'lautregrandmystere.mp3',
 		'Les 80 dollars' : 'les80dollars.mp3',
 		'Mc Flan' : 'mcflan.mp3',
-		'Mc Flyyy' : 'mcflyyy',
+		'Mc Flyyy' : 'mcflyyy.mp3',
 		'Mocassins Nike' : 'mocassins_nike.mp3',
 		'Molosse' : 'molosse.mp3',
 		'Monte banane' : 'monte_banane.mp3',
