@@ -1,8 +1,8 @@
 var mediasTab = {
     'dikkenek' : {
 		'titre' : 'Dikkenek',
-		'banner' : 'img/banner.png',
-		'thumbnail' : 'img/thumbnail.png',
+		'banner' : 'img/dikkenek-banner.png',
+		'thumbnail' : 'img/dikkenek-thumbnail.png',
         'Pas commencer à jouer avec mes couilles' : 'jouer_avec_mes_couilles.mp3',
         'Carjacker' : 'carjacker.mp3',
 		'Excessivement énervant' : 'excessivement_enervant.mp3',
@@ -15,8 +15,8 @@ var mediasTab = {
     },
     'visiteurs' : {
 		'titre' : 'Les visiteurs',
-		'banner' : 'img/banner.png',
-		'thumbnail' : 'img/thumbnail.png',
+		'banner' : 'img/visiteurs-banner.png',
+		'thumbnail' : 'img/visiteurs-thumbnail.png',
         'Salope' : 'les_visiteurs_016_saloppe.mp3',
         'Binz' : 'les_visiteurs_033_binz.mp3',
 		'Ca puir' : 'les_visiteurs_003_ca_puir.mp3',
@@ -30,8 +30,8 @@ var mediasTab = {
     },
 	'les_bronzes' : {
 		'titre' : 'Les bronzés',
-		'banner' : 'img/banner.png',
-		'thumbnail' : 'img/thumbnail.png',
+		'banner' : 'img/les_bronzes-banner.png',
+		'thumbnail' : 'img/les_bronzes-thumbnail.png',
 		'Ta gueule toi' : 'ta_gueule_toi.mp3',
 		'Sur un malentendu' : 'surunmalentendu.mp3',
 		'Pourcentage de fille pour un mec' : 'quel_pourcentage_fille_pour_mec.mp3',
@@ -41,8 +41,8 @@ var mediasTab = {
 	},
 	'diner_de_con' : {
 		'titre' : 'Le diner de con',
-		'banner' : 'img/banner.png',
-		'thumbnail' : 'img/thumbnail.png',
+		'banner' : 'img/diner_de_con-banner.png',
+		'thumbnail' : 'img/diner_de_con-thumbnail.png',
 		"Aux chiottes l'OM" : 'diner_de_cons_003_aux_chiottes_l_om.mp3',
 		'Regardez moi ce connard' : 'diner_de_cons_004_regardez_moi_ce_connard.mp3',
 		'Tête de vainqueur' : 'diner_de_cons_008_tete_de_vainqueur.mp3',
@@ -55,16 +55,16 @@ var mediasTab = {
 	},
 	'retour_vers_le_futur' : {
 		'titre' : 'Retour vers le futur',
-		'banner' : 'img/banner.png',
-		'thumbnail' : 'img/thumbnail.png',
+		'banner' : 'img/retour_vers_le_futur-banner.png',
+		'thumbnail' : 'img/retour_vers_le_futur-thumbnail.png',
 		'Allo McFly' : 'Allo_McFly.mp3',
 		'He McFly' : 'he_McFly.mp3',
 		'Pépéééé' : 'pepeeeee.mp3'
 	},
 	'3_freres' : {
 		'titre' : 'Les 3 frères',
-		'banner' : 'img/banner.png',
-		'thumbnail' : 'img/thumbnail.png',
+		'banner' : 'img/3_freres-banner.png',
+		'thumbnail' : 'img/3_freres-thumbnail.png',
 		"J'adore l'abstrait" : 'troisfreresabstrait.mp3',
 		'Bambi y fait dodo' : 'troisfreresbambi.mp3',
 		'Cent patates' : 'troisfrerescentpatates.mp3',
