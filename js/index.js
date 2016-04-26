@@ -216,7 +216,7 @@ function playSound(mp3File) {
 	}, 1000);
 	
 	function onEnd() {
-		if( my_media && playing == false ){
+		if( my_media && playing == true ){
 			stopAudio();
 		}
 	}
@@ -231,7 +231,7 @@ function stopAudio() {
 	playing = false; 
 	mediaTimer = null;
 	my_media = null;
-	$('#statusBar').html('</br>');
+	$('#statusBar').html('');
 }
 
 function exitFromApp(){
