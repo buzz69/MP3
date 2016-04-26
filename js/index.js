@@ -231,7 +231,7 @@ function stopAudio() {
 	playing = false; 
 	mediaTimer = null;
 	my_media = null;
-	$('#statusBar').html('');
+	$('#statusBar').html('<br>');
 }
 
 function exitFromApp(){
