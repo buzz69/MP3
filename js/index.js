@@ -216,7 +216,7 @@ function playSound(mp3File) {
 	}, 1000);
 	
 	function onEnd() {
-		if( my_media && playing == true ){
+		if( my_media && playing == false ){
 			stopAudio();
 		}
 	}
